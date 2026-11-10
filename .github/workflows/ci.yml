@@ -39,8 +39,8 @@ jobs:
             --instance-ids "${{ secrets.INSTANCE_ID }}" \
             --document-name "AWS-RunShellScript" \
             --parameters "commands = [
-            \"aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS password-stdin $REGISTRY\",
-            \"sudo docker pull $REGISTRY/$REPO:$IMAGE_TAG\",
+            \"aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$REGISTRY"\",
+            \"sudo docker pull $REGISTRY/$REPO:$IMAGE_TAG\","
             \"sudo docker stop suscripciones || true\",
             \"sudo docker rm suscripciones || true\",
             \"sudo docker run -d --name suscripciones -p 8080:8080 $REGISTRY/$REPO:$IMAGE_TAG\"
