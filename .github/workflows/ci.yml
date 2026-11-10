@@ -26,7 +26,7 @@ jobs:
           REPO: "${{ secrets.ECR_REPOSITORY }}"
           IMAGE_TAG: "${{ github.sha }}"
         run: |
-          IMAGE= "$REGISTRY/$REPO:$IMAGE_TAG"
+          IMAGE="$REGISTRY/$REPO:$IMAGE_TAG"
           docker build -t "$IMAGE" . && docker push "$IMAGE"
       - name: despliegue automatico
         env:
